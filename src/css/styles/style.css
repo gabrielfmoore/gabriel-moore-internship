@@ -16701,7 +16701,7 @@ img {
   display: block;
   width: 100%;
   height: 200px;
-  border-radius: 10px 10px 0 0;
+  border-radius: 0;
 }
 
 .skeleton-title {
@@ -16710,6 +16710,7 @@ img {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 0;
 }
 
 .skeleton-code-wrap {
@@ -16725,10 +16726,59 @@ img {
   margin-right: auto;
   margin-top: 8px;
   margin-bottom: 8px;
+  border-radius: 0;
 }
 
 .skeleton-link {
   display: block;
+}
+
+.nft__item .author_list_pp .skeleton-author {
+  margin: 0;
+}
+
+.skeleton-preview {
+  display: block;
+  width: 100%;
+  height: 350px;
+  border-radius: 0;
+}
+
+.skeleton-price {
+  width: 70px;
+  height: 14px;
+  display: block;
+  border-radius: 0;
+}
+
+.skeleton-like {
+  width: 40px;
+  height: 14px;
+  display: block;
+  border-radius: 0;
+}
+
+.nft__item_info .skeleton-title {
+  width: 94%;
+  height: 30px;
+  margin: 4px 0 8px 0;
+}
+
+.nft__item_info .skeleton-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nft__item_info .skeleton-price {
+  width: 50%;
+  height: 20px;
+}
+
+.nft__item_info .skeleton-like {
+  width: 15%;
+  height: 15px;
+  margin-bottom: -12px;
 }
 
 .nft-image {
