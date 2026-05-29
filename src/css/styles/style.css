@@ -16758,6 +16758,10 @@ img {
   border-radius: 0;
 }
 
+.skeleton-seller-name {
+  margin-bottom: 8px
+}
+
 .nft__item_info .skeleton-title {
   width: 94%;
   height: 30px;
@@ -16779,6 +16783,24 @@ img {
   width: 15%;
   height: 15px;
   margin-bottom: -12px;
+}
+
+.author_list .author_list_pp .skeleton-author {
+  margin: 0;
+}
+
+.author_list_info .skeleton-seller-name {
+  width: 100px;
+  height: 20px;
+  display: block;
+  border-radius: 0;
+}
+
+.author_list_info .skeleton-seller-price {
+  width: 40px;
+  height: 20px;
+  display: block;
+  border-radius: 0;
 }
 
 .nft-image {
