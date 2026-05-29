@@ -16,7 +16,7 @@ const HotCollections = () => {
     nav: collections.length > 4,
     dots: false,
     loop: collections.length > 4,
-    smartSpeed: 600,
+    smartSpeed: 300,
     responsive: {
       0: {
         items: 1,
@@ -75,21 +75,15 @@ const HotCollections = () => {
                   <div key={index}>
                     <div className="nft_coll">
                       <div className="nft_wrap">
-                        <Link to="/item-details" className="skeleton-link">
-                          <Skeleton className="skeleton-image" />
-                        </Link>
+                        <Skeleton className="skeleton-image" />
                       </div>
                       <div className="nft_coll_pp">
-                        <Link to="/author" className="skeleton-link">
-                          <Skeleton className="skeleton-author" />
-                        </Link>
+                        <Skeleton className="skeleton-author" />
                       </div>
                       <div className="nft_coll_info">
-                        <Link to="/explore" className="skeleton-link">
-                          <h4>
-                            <Skeleton className="skeleton-title" />
-                          </h4>
-                        </Link>
+                        <h4>
+                          <Skeleton className="skeleton-title" />
+                        </h4>
                         <span className="skeleton-code-wrap">
                           <Skeleton className="skeleton-code" />
                         </span>
