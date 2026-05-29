@@ -5,7 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Project Notes
 
 - Slider recommendation: keep the current Owl-based approach for this starter in the short term because the project already includes Owl-related styling and theme hooks.
-- Longer term, prefer Keen for any new React-first carousel work because it is a more modern fit for React and offers better flexibility and maintainability.
+- Longer term, I prefer Keen for any new React-first carousel work because it is a more modern fit for React and offers better flexibility and maintainability.  
 
 ## Available Scripts
 
