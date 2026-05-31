@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import EthImage from "../images/ethereum.svg";
 import { Link, useParams } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
 import Skeleton from "../components/UI/Skeleton";
 
 const ITEM_DETAILS_API =
@@ -43,7 +42,7 @@ const ItemDetails = () => {
             {isLoading ? (
               <div className="row">
                 <div className="col-md-6 text-center">
-                      <Skeleton width={"100%"} height={"100%"} />
+                  <Skeleton width={"100%"} height={"100%"} />
                 </div>
                 <div className="col-md-6">
                   <div className="item_info">
@@ -88,14 +87,14 @@ const ItemDetails = () => {
                             />
                           </div>
                           <div className="author_list_info">
-                              <Skeleton width={125} height={20} />
+                            <Skeleton width={125} height={20} />
                           </div>
                         </div>
                       </div>
                       <div className="spacer-40"></div>
                       <h6>Price</h6>
                       <div className="nft-item-price">
-                              <Skeleton width={75} height={20} />
+                        <Skeleton width={75} height={20} />
                       </div>
                     </div>
                   </div>
