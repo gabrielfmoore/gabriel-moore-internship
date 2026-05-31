@@ -1,6 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+const categories = [
+  { icon: "fa-image", label: "Art" },
+  { icon: "fa-music", label: "Music" },
+  { icon: "fa-search", label: "Domain Names" },
+  { icon: "fa-globe", label: "Virtual Worlds" },
+  { icon: "fa-vcard", label: "Trading Cards" },
+  { icon: "fa-th", label: "Collectibles" },
+];
+
 const BrowseByCategory = () => {
   return (
     <section id="section-category" className="no-top">
@@ -12,42 +21,22 @@ const BrowseByCategory = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <div className="col-md-2 col-sm-4 col-6 mb-sm-30">
-            <Link to="/explore" className="icon-box style-2 rounded">
-              <i className="fa fa-image"></i>
-              <span>Art</span>
-            </Link>
-          </div>
-          <div className="col-md-2 col-sm-4 col-6 mb-sm-30">
-            <Link to="/explore" className="icon-box style-2 rounded">
-              <i className="fa fa-music"></i>
-              <span>Music</span>
-            </Link>
-          </div>
-          <div className="col-md-2 col-sm-4 col-6 mb-sm-30">
-            <Link to="/explore" className="icon-box style-2 rounded">
-              <i className="fa fa-search"></i>
-              <span>Domain Names</span>
-            </Link>
-          </div>
-          <div className="col-md-2 col-sm-4 col-6 mb-sm-30">
-            <Link to="/explore" className="icon-box style-2 rounded">
-              <i className="fa fa-globe"></i>
-              <span>Virtual Worlds</span>
-            </Link>
-          </div>
-          <div className="col-md-2 col-sm-4 col-6 mb-sm-30">
-            <Link to="/explore" className="icon-box style-2 rounded">
-              <i className="fa fa-vcard"></i>
-              <span>Trading Cards</span>
-            </Link>
-          </div>
-          <div className="col-md-2 col-sm-4 col-6 mb-sm-30">
-            <Link to="/explore" className="icon-box style-2 rounded">
-              <i className="fa fa-th"></i>
-              <span>Collectibles</span>
-            </Link>
-          </div>
+          {categories.map((category, index) => (
+            <div
+              key={category.label}
+              className="col-md-2 col-sm-4 col-6 mb-sm-30 fade-left-20"
+              data-aos="fade-left"
+              data-aos-once="true"
+              data-aos-easing="ease-out"
+              data-aos-delay={index * 50}
+              data-aos-duration="600"
+            >
+              <Link to="/explore" className="icon-box style-2 rounded">
+                <i className={`fa ${category.icon}`}></i>
+                <span>{category.label}</span>
+              </Link>
+            </div>
+          ))}
         </div>
       </div>
     </section>

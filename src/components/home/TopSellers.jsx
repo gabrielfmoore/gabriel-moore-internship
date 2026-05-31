@@ -10,11 +10,12 @@ const TopSellers = () => {
   useEffect(() => {
     const fetchSellers = async () => {
       try {
-        const response = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers")
-        setSellers(response.data)
-      }
-      catch (error)   {
-        console.error("Failed to load top sellers")
+        const response = await axios.get(
+          "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers",
+        );
+        setSellers(response.data);
+      } catch (error) {
+        console.error("Failed to load top sellers");
       } finally {
         setIsLoading(false);
       }
@@ -27,7 +28,13 @@ const TopSellers = () => {
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
-            <div className="text-center">
+            <div
+              className="text-center"
+              data-aos="fade-zoom-in"
+              data-aos-easing="linear"
+              data-aos-duration="300"
+              data-aos-offset="0"
+            >
               <h2>Top Sellers</h2>
               <div className="small-border bg-color-2"></div>
             </div>
@@ -47,7 +54,14 @@ const TopSellers = () => {
                     </li>
                   ))
                 : sellers.map((seller) => (
-                    <li key={seller.id}>
+                    <li
+                      key={seller.id}
+                      data-aos="fade-zoom-in"
+                      data-aos-anchor-placement="top-bottom"
+                      data-aos-easing="linear"
+                      data-aos-duration="1000"
+                      data-aos-offset="0"
+                    >
                       <div className="author_list_pp">
                         <Link to={`/author/${seller.authorId}`}>
                           <img
