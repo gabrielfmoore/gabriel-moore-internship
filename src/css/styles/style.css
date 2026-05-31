@@ -13696,14 +13696,6 @@ a.read_more i {
   -webkit-border-radius: 8px;
 }
 
-.nft__item_preview.is-image-loading {
-  opacity: 0;
-}
-
-.nft__item_preview {
-  transition: opacity 0.3s ease;
-}
-
 .nft__item .author_list_pp {
   margin: 0;
 }
@@ -16861,4 +16853,16 @@ img {
 
 .no-cursor {
   cursor: not-allowed;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+html:not(.no-js) [data-aos="fade-up"].fade-up-20 {
+  transform: translate3d(0, 20px, 0);
+}
+
+html:not(.no-js) [data-aos="fade-left"].fade-left-20 {
+  transform: translate3d(20px, 0, 0);
 }
