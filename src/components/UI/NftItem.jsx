@@ -3,6 +3,14 @@ import { Link } from "react-router-dom";
 import Countdown from "./Countdown";
 import Skeleton from "./Skeleton";
 
+export const revealLoadedPreviewImages = (root) => {
+  root?.querySelectorAll(".nft__item_preview.is-image-loading").forEach((img) => {
+    if (img.complete && img.naturalWidth > 0) {
+      img.classList.remove("is-image-loading");
+    }
+  });
+};
+
 const NftItem = ({ item }) => (
   <div className="nft__item">
     <div className="author_list_pp">
@@ -44,8 +52,16 @@ const NftItem = ({ item }) => (
       <Link to={`/item-details/${item.nftId}`}>
         <img
           src={item.nftImage}
-          className="lazy nft__item_preview"
+          className="lazy nft__item_preview is-image-loading"
           alt={item.title}
+          onLoad={(event) =>
+            event.currentTarget.classList.remove("is-image-loading")
+          }
+          ref={(element) => {
+            if (element?.complete) {
+              element.classList.remove("is-image-loading");
+            }
+          }}
         />
       </Link>
     </div>

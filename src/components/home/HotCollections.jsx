@@ -4,7 +4,6 @@ import axios from "axios";
 import OwlCarousel from "react-owl-carousel";
 import Skeleton from "../UI/Skeleton";
 
-
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -39,13 +38,12 @@ const HotCollections = () => {
     loop: true,
   };
 
-
   useEffect(() => {
     const fetchCollections = async () => {
       setIsLoading(true);
       try {
         const response = await axios.get(
-          "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
+          "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections",
         );
         setCollections(response.data);
       } catch (error) {
@@ -70,7 +68,10 @@ const HotCollections = () => {
           </div>
           <div className="col-lg-12">
             {isLoading ? (
-              <OwlCarousel key="hot-collections-skeleton" {...skeletonCarouselOptions}>
+              <OwlCarousel
+                key="hot-collections-skeleton"
+                {...skeletonCarouselOptions}
+              >
                 {new Array(4).fill(0).map((_, index) => (
                   <div key={index}>
                     <div className="nft_coll">
@@ -98,13 +99,21 @@ const HotCollections = () => {
                   <div key={collection.id}>
                     <div className="nft_coll">
                       <div className="nft_wrap">
-                        <Link to="/item-details">
-                          <img src={collection.nftImage} className="lazy img-fluid" alt={collection.title} />
+                        <Link to={`/item-details/${collection.nftId}`}>
+                          <img
+                            src={collection.nftImage}
+                            className="lazy img-fluid"
+                            alt={collection.title}
+                          />
                         </Link>
                       </div>
                       <div className="nft_coll_pp">
-                        <Link to="/author">
-                          <img className="lazy pp-coll" src={collection.authorImage} alt={collection.title} />
+                        <Link to={`/author/${collection.authorId}`}>
+                          <img
+                            className="lazy pp-coll"
+                            src={collection.authorImage}
+                            alt={collection.title}
+                          />
                         </Link>
                         <i className="fa fa-check"></i>
                       </div>
