@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import OwlCarousel from "react-owl-carousel";
-import NftItem, { NftItemSkeleton } from "../UI/NftItem";
+import NftItem, { NftItemSkeleton, revealLoadedPreviewImages } from "../UI/NftItem";
 
 const baseCarouselOptions = {
   className: "owl-theme",
@@ -28,6 +28,7 @@ const baseCarouselOptions = {
 const NewItems = () => {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const loadedCarouselRef = useRef(null);
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -45,6 +46,26 @@ const NewItems = () => {
     };
     fetchItems();
   }, []);
+
+  useEffect(() => {
+    if (isLoading || !loadedCarouselRef.current) return;
+
+    const root = loadedCarouselRef.current;
+    const handleImageLoad = (event) => {
+      if (event.target.matches(".nft__item_preview")) {
+        event.target.classList.remove("is-image-loading");
+      }
+    };
+
+    root.addEventListener("load", handleImageLoad, true);
+    revealLoadedPreviewImages(root);
+
+    return () => root.removeEventListener("load", handleImageLoad, true);
+  }, [isLoading, items]);
+
+  const handleCarouselUpdate = (event) => {
+    revealLoadedPreviewImages(event?.target ?? loadedCarouselRef.current);
+  };
 
   return (
     <section id="section-items" className="no-bottom">
@@ -71,18 +92,22 @@ const NewItems = () => {
                 ))}
               </OwlCarousel>
             ) : (
-              <OwlCarousel
-                key="new-items-loaded"
-                {...baseCarouselOptions}
-                nav={items.length > 4}
-                loop={items.length > 4}
-              >
-                {items.map((item) => (
-                  <div key={item.id}>
-                    <NftItem item={item} />
-                  </div>
-                ))}
-              </OwlCarousel>
+              <div ref={loadedCarouselRef}>
+                <OwlCarousel
+                  key="new-items-loaded"
+                  {...baseCarouselOptions}
+                  nav={items.length > 4}
+                  loop={items.length > 4}
+                  onInitialized={handleCarouselUpdate}
+                  onTranslated={handleCarouselUpdate}
+                >
+                  {items.map((item) => (
+                    <div key={item.id}>
+                      <NftItem item={item} />
+                    </div>
+                  ))}
+                </OwlCarousel>
+              </div>
             )}
           </div>
         </div>
