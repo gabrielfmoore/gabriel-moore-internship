@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
 import { Link, useParams } from "react-router-dom";
 import Skeleton from "../components/UI/Skeleton";
+
+const AUTHOR_API =
+  "https://us-central1-nft-cloud-functions.cloudfunctions.net/authors";
 
 const Author = () => {
   const { authorId } = useParams();
@@ -16,21 +20,22 @@ const Author = () => {
   }, []);
 
   useEffect(() => {
-    setIsLoading(true);
-    fetch(
-      `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`,
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setAuthor(data);
-        setFollowerCount(data.followers);
-      })
-      .catch((error) => {
+    const fetchAuthor = async () => {
+      setIsLoading(true);
+      try {
+        const response = await axios.get(`${AUTHOR_API}?author=${authorId}`);
+        setAuthor(response.data);
+        setFollowerCount(response.data.followers);
+      } catch (error) {
         console.error("Error fetching author:", error);
         setAuthor(null);
         setFollowerCount(null);
-      })
-      .finally(() => setIsLoading(false));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchAuthor();
   }, [authorId]);
 
   if (!author && !isLoading) return null;
